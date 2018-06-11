@@ -80,11 +80,20 @@ const PokemonCard = ({ id, name, image }) => (
                               style={{ marginBottom: '10px' }}
                             >
                               <h5>Weaknesses</h5>
-                              {pokemon.weaknesses.map((weakness, idx) => (
-                                <span key={idx} style={{ fontSize: '10pt' }}>
-                                  {weakness}
-                                </span>
-                              ))}
+                              {Object.keys(pokemon.weaknesses)
+                                .sort(
+                                  (a, b) =>
+                                    parseInt(pokemon.weaknesses[a]) <=
+                                    parseInt(pokemon.weaknesses[b])
+                                      ? 1
+                                      : -1,
+                                )
+                                .slice(0, 2)
+                                .map((weakness, idx) => (
+                                  <span key={idx} style={{ fontSize: '10pt' }}>
+                                    {weakness} - {pokemon.weaknesses[weakness]}
+                                  </span>
+                                ))}
                             </FlexList>
                           </Modal.Body>
                         );
