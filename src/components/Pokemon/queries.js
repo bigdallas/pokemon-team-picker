@@ -2,10 +2,10 @@ import gql from 'graphql-tag';
 
 const GET_POKEMON_QUERY = gql`
   {
-    pokemons(first: 20) {
+    pokemons: allPokemons {
       id
+      image: img
       name
-      image
       classification
     }
   }
@@ -18,7 +18,7 @@ const GET_AN_ERROR_QUERY = gql`
       name
       image
       classification
-      foobar # This better not exist! 
+      foobar # This better not exist!
     }
   }
 `;
